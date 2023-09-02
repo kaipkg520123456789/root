@@ -1,0 +1,76 @@
+ <style>
+    /* 包围样式 */
+    .wrapper {
+      position: fixed;
+      top: 600px;
+      right: 290px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 400px;
+      height: 190px;
+      background-color: #fff;
+      border-radius: 90px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* 文字样式 */
+    .status {
+      display: flex;
+      align-items: center;
+      font-size: 40px;
+      color: #333;
+    }
+    
+    /* 状态圆圈样式 */
+    .status-circle {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    
+    /* 状态文字样式 */
+    .status-text {
+      font-weight: bold;
+    }
+    
+    /* 状态样式 */
+    .connected {
+      color: green;
+    }
+    
+    .disconnected {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="status">
+      <div class="status-circle"></div>
+      <div class="status-text">正在检测网络连接</div>
+    </div>
+  </div>
+  <script>
+    const statusCircle = document.querySelector('.status-circle');
+    const statusText = document.querySelector('.status-text');
+    
+    setInterval(() => {
+      const isConnected = navigator.onLine;
+      
+      if (isConnected) {
+        statusCircle.style.backgroundColor = 'green';
+        statusText.textContent = '✅已连接网络😃';
+        statusText.classList.add('connected');
+        statusText.classList.remove('disconnected');
+      } else {
+        statusCircle.style.backgroundColor = 'red';
+        statusText.textContent = '❌未连接网络😓';
+        statusText.classList.add('disconnected');
+        statusText.classList.remove('connected');
+      }
+    }, 1);
+  </script>
+</body>
+</html>
